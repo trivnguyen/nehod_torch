@@ -89,7 +89,7 @@ def train(
     # Create Trainer and start training
     callbacks = [
         pl.callbacks.EarlyStopping(
-            monitor='val_loss', patience=config.training_args.patience,
+            monitor='val_loss', patience=config.training.patience,
             mode='min', verbose=True),
         pl.callbacks.ModelCheckpoint(
             filename="{epoch}-{val_loss:.4f}", monitor=config.monitor,save_top_k=10, mode='min', save_weights_only=False),
