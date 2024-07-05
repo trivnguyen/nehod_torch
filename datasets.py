@@ -89,7 +89,7 @@ def read_preprocess_dataset(
             mask = ~mask
         return x, cond, mask, norm_dict
 
-def create_dataloader(x, cond, mask, **kwargs):
+def create_dataloader(data, **kwargs):
     """ Create a PyTorch DataLoader """
-    dataset = TensorDataset(x, cond, mask)
+    dataset = TensorDataset(*data)
     return DataLoader(dataset, **kwargs)

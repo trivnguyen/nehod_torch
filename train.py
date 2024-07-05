@@ -70,10 +70,10 @@ def train(
         norm_dict=norm_dict,
     )
     train_loader = datasets.create_dataloader(
-        train_x, train_cond, train_mask, batch_size=config.training.batch_size,
+        (train_x, train_cond, train_mask), batch_size=config.training.batch_size,
         shuffle=True, pin_memory=torch.cuda.is_available())
     val_loader = datasets.create_dataloader(
-        val_x, val_cond, val_mask, batch_size=config.training.batch_size,
+        (val_x, val_cond, val_mask), batch_size=config.training.batch_size,
         shuffle=False, pin_memory=torch.cuda.is_available())
 
     # Create the VDM model
