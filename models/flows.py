@@ -5,11 +5,10 @@ import pytorch_lightning as pl
 import zuko
 
 
-
 class NPE(pl.LightningModule):
     def __init__(
         self, in_dim, context_dim, hidden_dims, projection_dims,
-        optimizer_args, scheduler_args=None
+        optimizer_args, scheduler_args=None, norm_dict=None
     ):
         super().__init__()
         self.in_dim = in_dim
@@ -17,6 +16,7 @@ class NPE(pl.LightningModule):
         self.hidden_dims = hidden_dims
         self.optimizer_args = optimizer_args
         self.scheduler_args = scheduler_args
+        self.norm_dict = norm_dict
         self.save_hyperparameters()
 
         self.train_losses = []
