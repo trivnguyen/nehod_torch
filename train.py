@@ -3,6 +3,7 @@ import os
 import pickle
 import sys
 import shutil
+import yaml
 
 import ml_collections
 import numpy as np
@@ -14,9 +15,7 @@ from absl import flags, logging
 from ml_collections import config_flags
 
 import datasets
-from models import noise_schedules
-from models import transformer, scores, vdm
-from models import diffusion_utils, utils
+from models import vdm, utils
 
 logging.set_verbosity(logging.INFO)
 
@@ -45,6 +44,14 @@ def train(
             raise ValueError(
                 f"Workdir {workdir} already exists. Please set overwrite=True "
                 "to overwrite the existing directory.")
+
+    os.makedirs(workdir, exist_ok=True)
+
+    # Save the configuration to a JSON file
+    config_dict = config.to_dict()
+    config_path = os.path.join(workdir, 'config.yaml')
+    with open(config_path, 'w') as f:
+        yaml.dump(config_dict, f, default_flow_style=False)
 
     # Read in and prepare the dataset
     train_x, train_cond, train_mask, norm_dict = datasets.read_preprocess_dataset(
