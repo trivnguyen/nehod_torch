@@ -92,13 +92,14 @@ def train(
             monitor='val_loss', patience=config.training.patience,
             mode='min', verbose=True),
         pl.callbacks.ModelCheckpoint(
-            filename="{epoch}-{val_loss:.4f}", monitor=config.monitor,save_top_k=10, mode='min', save_weights_only=False),
+            filename="{epoch}-{val_loss:.4f}", monitor='val_loss',
+            save_top_k=10, mode='min', save_weights_only=False),
         pl.callbacks.LearningRateMonitor("step"),
     ]
-    train_logger = pl_loggers.TensorBoardLogger(config.workdir)
+    train_logger = pl_loggers.TensorBoardLogger(workdir, version='')
 
     trainer = pl.Trainer(
-        default_root_dir=config.workdir,
+        default_root_dir=workdir,
         max_steps=config.training.max_steps,
         accelerator='gpu',
         callbacks=callbacks,

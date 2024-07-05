@@ -20,6 +20,21 @@ def get_activation(activation):
     else:
         raise ValueError(f'Unknown activation function: {activation.name}')
 
+class WarmUpCosineAnnealingLR(torch.optim.lr_scheduler.LambdaLR):
+    def __init__(self, optimizer, decay_steps, warmup_steps, eta_min=0, last_epoch=-1):
+        self.decay_steps = decay_steps
+        self.warmup_steps = warmup_steps
+        self.eta_min = eta_min
+        super().__init__(
+            optimizer, self.lr_lambda, last_epoch=last_epoch)
+
+    def lr_lambda(self, step):
+        if step < self.warmup_steps:
+            return float(step) / float(max(1, self.warmup_steps))
+        return self.eta_min + (
+            0.5 * (1 + math.cos(math.pi * (step - self.warmup_steps) / (self.decay_steps - warmup_steps))))
+
+
 class WarmUpCosineDecayLR(torch.optim.lr_scheduler.LambdaLR):
     def __init__(
         self, optimizer, init_value, peak_value, warmup_steps, decay_steps,
@@ -91,6 +106,12 @@ def configure_optimizers(parameters, optimizer_args, scheduler_args):
             warmup_steps=scheduler_args.warmup_steps,
             decay_steps=scheduler_args.decay_steps,
         )
+    elif scheduler_args.name == 'WarmUpCosineAnnealingLR':
+        scheduler = models_utils.WarmUpCosineAnnealingLR(
+            optimizer,
+            decay_steps=scheduler_args.decay_steps,
+            warmup_steps=scheduler_args.warmup_steps,
+            eta_min=scheduler_args.eta_min)
     else:
         raise NotImplementedError(
             "Scheduler {} not implemented".format(scheduler_args.name))
