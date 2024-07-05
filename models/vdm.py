@@ -3,6 +3,7 @@ from typing import Optional, Tuple, Union
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torch.distributions as dist
 import pytorch_lightning as pl
 
@@ -330,3 +331,45 @@ class VariationalDiffusionModel(pl.LightningModule):
     def configure_optimizers(self):
         return train_utils.configure_optimizers(
             self.parameters, self.optimizer_args, self.scheduler_args)
+
+    @torch.no_grad()
+    def sample_step(self, z_t, i, T, conditioning=None, mask=None):
+        """ Sample a step of the diffusion process.
+        Parameters
+        ----------
+        z_t : torch.Tensor
+            Latent state at time t, where t = (T - i) / T.
+        i : int
+            Current time step.
+        T : int
+            Total number of time steps.
+        conditioning : torch.Tensor, optional
+            Conditioning information.
+        mask : torch.Tensor, optional
+            Mask for the diffusion process.
+        Returns
+        -------
+        z_s : torch.Tensor
+            Latent state at time s, where s = t - 1.
+        """
+        eps = torch.randn_like(z_t)
+        t = (T - i) / T
+        s = (T - i - 1) / T
+        g_t = self.gamma(t)
+        g_s = self.gamma(s)
+        cond = self.embed(conditioning)
+        eps_hat_cond = self.score_model(
+            z_t,
+            g_t * torch.ones(z_t.shape[0], dtype=z_t.dtype, device=z_t.device),
+            cond,
+            mask
+        )
+        a = F.sigmoid(g_s)
+        b = F.sigmoid(g_t)
+        c = -torch.expm1(g_t - g_s)
+        sigma_t = torch.sqrt(diffusion_utils.sigma2(g_t))
+        z_s = (
+            torch.sqrt(a / b) * (z_t - sigma_t * c * eps_hat_cond)
+            + torch.sqrt((1.0 - a) * c) * eps
+        )
+        return z_s
