@@ -133,7 +133,7 @@ def train(
         callbacks=callbacks,
         logger=train_logger,
         enable_progress_bar=True,
-        # gradient_clip_val=config.optimizer.grad_clip,
+        gradient_clip_val=config.optimizer.grad_clip,
         val_check_interval=config.training.val_check_interval,
         check_val_every_n_epoch=None,
         log_every_n_steps=config.training.log_every_n_steps,
