@@ -36,7 +36,7 @@ class TransformerScoreModel(nn.Module):
             score_dict = {
                 "d_model": 256,
                 "d_mlp": 512,
-                "n_layers": 4,
+                "n_layers": 6,
                 "n_heads": 4,
                 "use_pos_enc": False,
             }
