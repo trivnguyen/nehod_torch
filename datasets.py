@@ -50,15 +50,14 @@ def read_preprocess_dataset(
     data, cond_table = read_dataset(
         data_root, data_name, flag, conditioning_parameters)
     x = data['features']
-    mask = data['mask']
+    mask = data['mask'].astype(bool)
     cond = cond_table.values
 
     # normalize the data
     if norm_data:
         if norm_dict is None:
-            mask_bool = mask.astype(bool)
-            x_mean = np.mean(x, axis=(0, 1), where=mask_bool[..., None])
-            x_std = np.std(x, axis=(0, 1), where=mask_bool[..., None])
+            x_mean = np.mean(x, axis=(0, 1), where=mask[..., None])
+            x_std = np.std(x, axis=(0, 1), where=mask[..., None])
             cond_mean = np.mean(cond, axis=0)
             cond_std = np.std(cond, axis=0)
             norm_dict = {
