@@ -7,9 +7,9 @@ import torch.nn.functional as F
 import torch.distributions as dist
 import pytorch_lightning as pl
 
-from models import noise_schedules, scores
-from models import diffusion_utils, train_utils, augmentations
-from models.diffusion_utils import alpha, sigma2, variance_preserving_map
+from nehod import noise_schedules, scores
+from nehod import diffusion_utils, train_utils, augmentations
+from nehod.diffusion_utils import alpha, sigma2, variance_preserving_map
 
 
 class VariationalDiffusionModel(pl.LightningModule):

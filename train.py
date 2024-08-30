@@ -12,7 +12,7 @@ from absl import flags, logging
 from ml_collections import config_flags
 
 import datasets
-from models import utils, vdm
+from nehod import utils, vdm
 
 logging.set_verbosity(logging.INFO)
 

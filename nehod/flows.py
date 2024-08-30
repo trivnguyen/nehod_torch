@@ -4,7 +4,7 @@ import torch.nn as nn
 import pytorch_lightning as pl
 import zuko
 
-from models import train_utils
+from nehod import train_utils
 
 class NPE(pl.LightningModule):
     def __init__(

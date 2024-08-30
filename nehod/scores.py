@@ -5,9 +5,9 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from models import diffusion_utils
-from models.models import MLP
-from models.transformer import Transformer
+from nehod import diffusion_utils
+from nehod.models import MLP
+from nehod.transformer import Transformer
 
 
 class TransformerScoreModel(nn.Module):

@@ -4,7 +4,7 @@ import tqdm
 import torch
 import numpy as np
 
-from models import diffusion_utils
+from nehod import diffusion_utils
 
 # Some helper functions
 def create_mask(n_array, num_particles):
