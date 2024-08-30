@@ -121,7 +121,7 @@ def train(
             mode='min', verbose=True),
         pl.callbacks.ModelCheckpoint(
             filename="{epoch}-{val_loss:.4f}", monitor='val_loss',
-            save_top_k=10, mode='min', save_weights_only=False),
+            save_last=True, save_top_k=10, mode='min', save_weights_only=False),
         pl.callbacks.LearningRateMonitor("step"),
     ]
     train_logger = pl_loggers.TensorBoardLogger(workdir, version='')
