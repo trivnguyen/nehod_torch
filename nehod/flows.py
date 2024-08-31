@@ -78,4 +78,4 @@ class NPE(pl.LightningModule):
 
     def configure_optimizers(self):
         return train_utils.configure_optimizers(
-            self.parameters,  self.optimizer_args, scheduler_args=self.scheduler_args)
+            self.parameters, self.optimizer_args, scheduler_args=self.scheduler_args)

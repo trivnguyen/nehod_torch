@@ -52,7 +52,10 @@ class TransformerScoreModel(nn.Module):
         self.mlp = MLP(d_cond, [d_cond * 4, d_cond * 4, d_cond])
 
         # create Transformer
-        score_dict = copy.deepcopy(self.score_dict).to_dict()
+        score_dict = copy.deepcopy(self.score_dict)
+        if not isinstance(score_dict, dict):
+            score_dict = score_dict.to_dict()
+
         score_dict["d_cond"] = d_cond
         score_dict.pop("d_t_embedding", None)
         score_dict.pop("name", None)

@@ -294,6 +294,9 @@ class VariationalDiffusionModel(pl.LightningModule):
 
     def prepare_batch(self, batch):
         x, conditioning, mask = batch
+        x = x.to(self.device)
+        conditioning = conditioning.to(self.device)
+        mask = mask.to(self.device)
 
         # apply data augmentation
         if self.training_args.rotation_augmentation:

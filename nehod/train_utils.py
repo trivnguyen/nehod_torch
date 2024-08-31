@@ -1,4 +1,5 @@
 
+import numpy as np
 import torch
 import torch.nn as nn
 import math
@@ -107,7 +108,7 @@ def configure_optimizers(parameters, optimizer_args, scheduler_args):
             decay_steps=scheduler_args.decay_steps,
         )
     elif scheduler_args.name == 'WarmUpCosineAnnealingLR':
-        scheduler = models_utils.WarmUpCosineAnnealingLR(
+        scheduler = WarmUpCosineAnnealingLR(
             optimizer,
             decay_steps=scheduler_args.decay_steps,
             warmup_steps=scheduler_args.warmup_steps,
