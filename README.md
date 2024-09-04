@@ -9,7 +9,17 @@ Code repository for preprint:
 
 NeHOD is a machine learning-based model for painting galaxies onto dark matter (DM) halos, similar to the Halo Occupation Distribution (HOD) model.
 NeHOD models galaxies as point clouds using a Variational Diffusion Model with a Transformer-based noise model.
-Point clouds allow NeHOD to resolve small spatial scales down to the resolution of **the** simulations.
+Point clouds allow NeHOD to resolve small spatial scales down to the resolution of the simulations.
+
+NeHOD consists of two main components:
+1. A normalizing flow that is conditioned on the simulation parameters and predicts the halo and central galaxy properties.
+2. A VDM to model satellite galaxies given the central galaxy properties, the halo properties, and simulation parameters.
+
+NeHOD operates hierarchically, where during inference, the VDM is conditioned on properties predicted by the flows.
+During training, both the flows and the VDM are optimized independently.
+
+![NeHOD flowchart](nehod.png)
+
 
 The diffusion model is implemented using `torch` and follows quite closely the implementation in Cuesta-Lazaro & Mishra-Sharma 2023 (CM23, see repo info below).
 Additionally, NeHOD also uses the Neural Spline Flows implementation from the `zuko` library to model central galaxies using neural spline flows.
