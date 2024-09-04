@@ -22,7 +22,7 @@ During training, both the flows and the VDM are optimized independently.
 
 
 The diffusion model is implemented using `torch` and follows quite closely the implementation in Cuesta-Lazaro & Mishra-Sharma 2023 (CM23, see repo info below).
-Additionally, NeHOD also uses the Neural Spline Flows implementation from the `zuko` library to model central galaxies using neural spline flows.
+The flow model is a neural spline flows from the `zuko` library.
 Training is managed using `pytorch-lightning`, and configuration is handled using `ml_collections`.
 
 Notable link:
