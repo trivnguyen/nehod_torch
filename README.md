@@ -2,9 +2,9 @@
 Code repository for preprint:
 
 - **How DREAMS are made: Emulating Satellite Galaxy and Subhalo Population
-  with Diffusion Models and Point Clouds** ([arXiv:xxxx.xxxx](https://arxiv.org/abs/xxxx.xxxx))
+  with Diffusion Models and Point Clouds** ([arXiv:2409.02980](http://arxiv.org/abs/2409.02980))
 
-- **Authors**: [Tri Nguyen](mailto:tnguy@mit.edu), [Francisco Villaescusa-Navarro](fvillaescusa@flatironinstitute.org), [Siddharth Mishra-Sharma](smsharma@mit.edu), [Carolina Cuesta-Lazaro](cuestalz@mit.edu), and the DREAMS Collaboration
+- **Authors**: [Tri Nguyen](mailto:trivtnguyen@northwestern.edu), [Francisco Villaescusa-Navarro](fvillaescusa@flatironinstitute.org), [Siddharth Mishra-Sharma](smsharma@mit.edu), [Carolina Cuesta-Lazaro](cuestalz@mit.edu), and the DREAMS Collaboration
 
 
 NeHOD is a machine learning-based model for painting galaxies onto dark matter (DM) halos, similar to the Halo Occupation Distribution (HOD) model.
@@ -22,11 +22,11 @@ During training, both the flows and the VDM are optimized independently.
 
 
 The diffusion model is implemented using `torch` and follows quite closely the implementation in Cuesta-Lazaro & Mishra-Sharma 2023 (CM23, see repo info below).
-The flow model is a neural spline flows from the `zuko` library.
+The flow model is a neural spline flow from the `zuko` library.
 Training is managed using `pytorch-lightning`, and configuration is handled using `ml_collections`.
 
 Notable link:
-- NeHOD: [arXiv:xxxx.xxxx](https://arxiv.org/abs/xxxx.xxxx)
+- NeHOD: [arXiv:2409.02980](https://arxiv.org/abs/2409.02980)
 - CM23: [arXiv:2311.17141](https://arxiv.org/abs/2311.17141).
 - CM23 repo: [smsharma/point-cloud-galaxy-diffusion](https://github.com/smsharma/point-cloud-galaxy-diffusion)
 
@@ -81,16 +81,20 @@ The trained models used in the preprint can be downloaded from the following lin
 For instructions on how to use the trained models, please refer to the `example/2_inference.ipynb` notebook, which demonstrates how to load the trained models and generate samples.
 
 ## Correspondence
-For any questions related to the preprint ([arXiv:xxxx.xxxx](https://arxiv.org/abs/xxxx.xxxx)), please contact the corresponding authors:
-- [Tri Nguyen](mailto:tnguy@mit.edu)
+For any questions related to the preprint ([arXiv:2409.02980](https://arxiv.org/abs/2409.02980)), please contact the corresponding authors:
+- [Tri Nguyen](mailto:trivtnguyen@northwestern.edu)
 - [Francisco Villaescusa-Navarro](fvillaescusa@flatironinstitute.org)
 - [Siddharth Mishra-Sharma](smsharma@mit.edu)
 - [Carolina Cuesta-Lazaro](cuestalz@mit.edu)
 
-For any questions or issues related to the repository, please contact the code maintainer: [Tri Nguyen](mailto:tnguy@mit.edu).
+For any questions or issues related to the repository, please contact the code maintainer: [Tri Nguyen](mailto:trivtnguyen@northwestern.edu).
 
 ## Citation
 If you are using this code, please cite the following paper:
+
+NeHOD paper (Placeholder):
+```bibtex
+```
 
 CM23 paper:
 ```bibtex
@@ -104,8 +108,4 @@ CM23 paper:
     month = "11",
     year = "2023"
 }
-```
-
-NeHOD paper (placeholder):
-```bibtex
 ```
