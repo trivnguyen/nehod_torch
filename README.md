@@ -92,8 +92,23 @@ For any questions or issues related to the repository, please contact the code m
 ## Citation
 If you are using this code, please cite the following paper:
 
-NeHOD paper (Placeholder):
+NeHOD paper:
 ```bibtex
+@ARTICLE{2024arXiv240902980N,
+       author = {{Nguyen}, Tri and {Villaescusa-Navarro}, Francisco and {Mishra-Sharma}, Siddharth and {Cuesta-Lazaro}, Carolina and {Torrey}, Paul and {Farahi}, Arya and {Garcia}, Alex M. and {Rose}, Jonah C. and {O'Neil}, Stephanie and {Vogelsberger}, Mark and {Shen}, Xuejian and {Roche}, Cian and {Angl{\'e}s-Alc{\'a}zar}, Daniel and {Kallivayalil}, Nitya and {Mu{\~n}oz}, Julian B. and {Cyr-Racine}, Francis-Yan and {Roy}, Sandip and {Necib}, Lina and {Kollmann}, Kassidy E.},
+        title = "{How DREAMS are made: Emulating Satellite Galaxy and Subhalo Populations with Diffusion Models and Point Clouds}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - Astrophysics of Galaxies, Astrophysics - Cosmology and Nongalactic Astrophysics, Computer Science - Machine Learning},
+         year = 2024,
+        month = sep,
+          eid = {arXiv:2409.02980},
+        pages = {arXiv:2409.02980},
+archivePrefix = {arXiv},
+       eprint = {2409.02980},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2024arXiv240902980N},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
 ```
 
 CM23 paper:
