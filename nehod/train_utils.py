@@ -77,11 +77,11 @@ def configure_optimizers(parameters, optimizer_args, scheduler_args):
 
     # setup the optimizer
     if optimizer_args.name == "Adam":
-        return torch.optim.Adam(
+        optimizer = torch.optim.Adam(
             parameters(), lr=optimizer_args.lr,
             weight_decay=optimizer_args.weight_decay)
     elif optimizer_args.name == "AdamW":
-        return torch.optim.AdamW(
+        optimizer = torch.optim.AdamW(
             parameters(), lr=optimizer_args.lr,
             weight_decay=optimizer_args.weight_decay)
     else:
